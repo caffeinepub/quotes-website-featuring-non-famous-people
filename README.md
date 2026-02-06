@@ -1,2 +1,3 @@
-# quotes-website-featuring-non-famous-people
-Exported from Caffeine project: Quotes website featuring non-famous people
+## Quotes website featuring non-famous people
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`

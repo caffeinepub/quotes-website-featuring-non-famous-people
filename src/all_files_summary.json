@@ -1,0 +1,22 @@
+{
+  "backend/main.mo": "Motoko canister storing quotes mapped by author, allowing adding quotes, fetching by author, and returning all quotes sorted by author.",
+  "feature_evidence.json": "Feature report listing implemented frontend files, components, and associated requirements with confidence levels.",
+  "frontend-file-summaries.txt": "Prewritten file summaries for various frontend components, hooks, pages, and config files.",
+  "frontend/index.css": "Global Tailwind-based theme defining warm OKLCH color variables, light/dark modes, and base styling.",
+  "frontend/index.html": "Basic HTML entry point mounting the React app and loading main.tsx.",
+  "frontend/src/App.tsx": "Main app layout with header, footer, and a paper-texture background that renders the QuotesHome page.",
+  "frontend/src/components/layout/SiteFooter.tsx": "Footer displaying attribution and styled with a blurred background and border.",
+  "frontend/src/components/layout/SiteHeader.tsx": "Sticky header showing site logo, title, and subtitle with a blurred background.",
+  "frontend/src/components/quotes/QuoteCard.tsx": "Card component showing a single quote with icon, text, and author attribution.",
+  "frontend/src/components/quotes/QuoteFeed.tsx": "Quote list component handling loading, error, empty states, and rendering QuoteCards.",
+  "frontend/src/components/quotes/QuotesToolbar.tsx": "Search and sort toolbar with text input and dropdown selector for organizing quotes.",
+  "frontend/src/components/quotes/QuoteSubmitForm.tsx": "Expandable form allowing users to submit quotes with validation, loading states, and toast feedback.",
+  "frontend/src/hooks/useActor.ts": "React hook creating and managing the backend actor based on user identity, invalidating queries when identity changes.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Provides a React context and provider for managing Internet Identity authentication using AuthClient, exposing identity state and login/logout helpers.",
+  "frontend/src/hooks/useQuotes.ts": "Defines React Query hooks to fetch sorted quotes from the backend and submit new quotes, with automatic cache invalidation.",
+  "frontend/src/index.css": "Sets up Tailwind base styles and a warm light/dark color theme with custom fonts and utility classes.",
+  "frontend/src/main.tsx": "Bootstraps the React app, wrapping it in react-query and Internet Identity providers.",
+  "frontend/src/pages/QuotesHome.tsx": "Implements the main quotes page with filtering, sorting, submission form, and a feed of quotes.",
+  "frontend/tailwind.config.js": "Configures Tailwind with custom colors, typography, container settings, animations, and plugins.",
+  "project_state.json": "Contains metadata about the project’s state, features, requirements, and image asset specifications."
+}

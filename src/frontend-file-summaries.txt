@@ -1,0 +1,14 @@
+{
+  "frontend/src/App.tsx": "Main app component that renders the site layout with header, footer, and quotes home page, including a subtle paper texture background overlay.",
+  "frontend/src/pages/QuotesHome.tsx": "Home page container that manages search and sort state, filters/sorts quotes client-side, and composes the hero section, submission form, toolbar, and feed.",
+  "frontend/src/components/layout/SiteHeader.tsx": "Site header component displaying the logo and site title with a sticky, semi-transparent backdrop.",
+  "frontend/src/components/layout/SiteFooter.tsx": "Site footer component with copyright notice and caffeine.ai attribution link.",
+  "frontend/src/components/quotes/QuoteFeed.tsx": "Feed component that renders a scrollable list of quote cards with loading skeletons, error states, and empty state messaging.",
+  "frontend/src/components/quotes/QuoteCard.tsx": "Individual quote display card with serif typography for quote text, author attribution, and hover effects.",
+  "frontend/src/components/quotes/QuoteSubmitForm.tsx": "Expandable quote submission form with text area for quote, input for author name, validation, and loading states.",
+  "frontend/src/components/quotes/QuotesToolbar.tsx": "Toolbar component containing search input and sort order selector for filtering and organizing quotes.",
+  "frontend/src/hooks/useQuotes.ts": "React Query hooks for fetching all quotes and submitting new quotes with automatic cache invalidation.",
+  "frontend/src/index.css": "Global styles with warm paper-like OKLCH color palette, custom fonts (Crimson Pro serif and Inter sans), and typography settings for both light and dark modes.",
+  "frontend/tailwind.config.js": "Tailwind configuration with custom font families (Crimson Pro serif, Inter sans) and extended theme tokens matching the warm paper aesthetic.",
+  "frontend/src/main.tsx": "Application entry point with QueryClient, InternetIdentity, ThemeProvider, and Sonner toast notifications configured."
+}

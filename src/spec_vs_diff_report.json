@@ -1,0 +1,138 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-06T13:44:31.753Z",
+  "summary": "The diff adds a new Motoko backend actor and a React frontend with a feed, submission form, search and sort UI, plus a warm paper-like theme and references to generated image assets. However, core backend API/data-model requirements (id/createdAt, createQuote/listQuotes with pagination, stable upgrade persistence, and validation/errors) are not implemented as specified. The frontend implements search/sort client-side but relies on a backend method that doesn’t match the requested API and lacks timestamps needed for correct newest/oldest sorting. The diff also introduces Internet Identity authentication plumbing, which is explicitly a non-goal.",
+  "missing_requirements": [
+    {
+      "id": "REQ-1",
+      "requirement": "Quote record must include at minimum: id, text, authorName, createdAt timestamp.",
+      "reason": "Backend Quote type only includes text and author; no id or createdAt, and field is named author not authorName.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-1",
+      "requirement": "Backend must expose canister methods createQuote(text, authorName) and listQuotes({page?, pageSize?}).",
+      "reason": "Backend exposes addQuote(author, text), getAuthorQuotes(author), and getQuotesSortedByAuthor(); no createQuote or listQuotes with pagination parameters.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/hooks/useQuotes.ts"
+      ]
+    },
+    {
+      "id": "REQ-1",
+      "requirement": "Quotes must persist across canister upgrades using stable storage.",
+      "reason": "No stable variables or preupgrade/postupgrade logic is present; storage uses an in-memory Map.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-1",
+      "requirement": "Backend validates inputs (non-empty text and authorName; reasonable max lengths) and returns clear error messages.",
+      "reason": "Backend addQuote does not validate non-empty/max lengths; getAuthorQuotes traps with a generic message and addQuote returns async () with no error channel.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "requirement": "Home page displays a scrollable list/feed of quotes with quote text and author name.",
+      "reason": "A feed is implemented, but the backend does not provide the required listQuotes API, and the frontend is wired to a non-specified method (getQuotesSortedByAuthor).",
+      "evidence": [
+        "frontend/src/components/quotes/QuoteFeed.tsx",
+        "frontend/src/hooks/useQuotes.ts",
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "requirement": "Loading and error states are shown for both listing and submission.",
+      "reason": "Listing has loading/error states in QuoteFeed, but the submission flow does not render an on-page error state (only toast messages); additionally, the backend mutation has no structured error messages to display.",
+      "evidence": [
+        "frontend/src/components/quotes/QuoteFeed.tsx",
+        "frontend/src/components/quotes/QuoteSubmitForm.tsx",
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "requirement": "Sort control must support at least: Newest first and Oldest first (with correct behavior).",
+      "reason": "UI has sort options, but sorting logic does not use timestamps (backend has none) and the comparator always returns -1 or 1 without comparing items, so it cannot correctly order quotes.",
+      "evidence": [
+        "frontend/src/components/quotes/QuotesToolbar.tsx",
+        "frontend/src/pages/QuotesHome.tsx",
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "requirement": "Backend supports listing with optional query parameters needed to implement search and sorting efficiently (or frontend filtering if dataset is small), with documented behavior in code comments.",
+      "reason": "Backend has no listQuotes with query parameters (search/sort/page/pageSize), and there are no code comments documenting the chosen approach per requirement; frontend filtering exists but backend still lacks the requested listing API.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/pages/QuotesHome.tsx"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "requirement": "Generated images are placed in frontend/public/assets/generated and referenced directly by the frontend (no backend routing).",
+      "reason": "Frontend references the generated image paths, but the diff does not add any files under frontend/public/assets/generated, so placement cannot be verified from the provided changes.",
+      "evidence": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/layout/SiteHeader.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Internet Identity authentication plumbing (identity context/provider and authenticated/anonymous actor selection).",
+      "reason": "BuildRequest explicitly lists Internet Identity authentication and user accounts as non-goals, but the diff adds useInternetIdentity and wraps the app with InternetIdentityProvider, and useActor changes actor creation based on identity.",
+      "evidence": [
+        "frontend/src/hooks/useInternetIdentity.ts",
+        "frontend/src/hooks/useActor.ts",
+        "frontend/src/main.tsx"
+      ]
+    },
+    {
+      "description": "Backend API shaped around per-author storage and author-specific retrieval/sorting (getAuthorQuotes, getQuotesSortedByAuthor) instead of the requested create/list with pagination.",
+      "reason": "These methods and the author-keyed Map are not requested; they replace the specified createQuote/listQuotes API.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/hooks/useQuotes.ts"
+      ]
+    },
+    {
+      "description": "Footer attribution/link to caffeine.ai and a 'Built with' message.",
+      "reason": "Not requested in requirements; introduces additional outbound link and copy.",
+      "evidence": [
+        "frontend/src/components/layout/SiteFooter.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.78,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/layout/SiteFooter.tsx",
+    "frontend/src/components/layout/SiteHeader.tsx",
+    "frontend/src/components/quotes/QuoteCard.tsx",
+    "frontend/src/components/quotes/QuoteFeed.tsx",
+    "frontend/src/components/quotes/QuoteSubmitForm.tsx",
+    "frontend/src/components/quotes/QuotesToolbar.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQuotes.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/QuotesHome.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

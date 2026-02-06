@@ -1,0 +1,89 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-a-frontend-that-showcases-quotes-from-non-famous-people-with-a-home-feed-and-a-quote-submission-form",
+      "featureTitle": "Create a frontend that showcases quotes from non-famous people with a home feed and a quote submission form.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/quotes/QuoteCard.tsx",
+        "frontend/src/components/quotes/QuoteFeed.tsx",
+        "frontend/src/components/quotes/QuoteSubmitForm.tsx",
+        "frontend/src/hooks/useQuotes.ts",
+        "frontend/src/main.tsx",
+        "frontend/src/pages/QuotesHome.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-basic-browsing-utilities-to-help-users-discover-quotes-including-search-by-text-author-and-simple-sorting",
+      "featureTitle": "Add basic browsing utilities to help users discover quotes, including search by text/author and simple sorting.",
+      "files": [
+        "frontend/src/components/quotes/QuotesToolbar.tsx",
+        "frontend/src/hooks/useQuotes.ts",
+        "frontend/src/pages/QuotesHome.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-a-coherent-distinctive-visual-theme-across-the-site-colors-typography-spacing-and-components-suitable-for-a-quotes-focused-reading-experience-avoiding-blue-purple-as-the-primary-palette",
+      "featureTitle": "Apply a coherent, distinctive visual theme across the site (colors, typography, spacing, and components) suitable for a quotes-focused reading experience, avoiding blue/purple as the primary palette.",
+      "files": [
+        "frontend/index.css",
+        "frontend/src/App.tsx",
+        "frontend/src/components/quotes/QuoteCard.tsx",
+        "frontend/src/components/quotes/QuoteSubmitForm.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-static-generated-image-assets-for-branding-and-ambiance-and-render-them-in-the-ui-stored-under-frontend-public-assets-generated",
+      "featureTitle": "Add static generated image assets for branding and ambiance and render them in the UI (stored under frontend/public/assets/generated).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/layout/SiteHeader.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

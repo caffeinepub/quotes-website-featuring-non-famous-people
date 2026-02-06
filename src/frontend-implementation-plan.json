@@ -1,0 +1,151 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Quotes website (non-famous people) — frontend feed, submission, browsing, and theme",
+  "requirements": [
+    {
+      "id": "REQ-2",
+      "summary": "Build a quotes home feed and a quote submission form with React Query loading/error states and automatic refetch after submit.",
+      "acceptanceCriteria": [
+        "Home page displays a scrollable list/feed of quotes with quote text and author name.",
+        "A “Submit a quote” flow exists with a form for quote text and author name and a submit button.",
+        "After successful submission, the new quote appears in the feed without requiring a manual refresh (React Query invalidation/refetch).",
+        "Loading and error states are shown for both listing and submission."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the main App component that renders the quotes feed view, header, and submission form in a single-page layout (no extra routes unless needed)."
+        },
+        {
+          "path": "frontend/src/pages/QuotesHome.tsx",
+          "operation": "create",
+          "description": "Implement the home feed page container that composes search/sort controls, the scrollable feed, and the submission flow."
+        },
+        {
+          "path": "frontend/src/components/quotes/QuoteFeed.tsx",
+          "operation": "create",
+          "description": "Create a feed component that renders a scrollable list of quote items and handles empty state, loading skeleton/placeholder, and error UI."
+        },
+        {
+          "path": "frontend/src/components/quotes/QuoteCard.tsx",
+          "operation": "create",
+          "description": "Create a quote display component with clear typography hierarchy (quote text vs author) and consistent spacing aligned to the site theme."
+        },
+        {
+          "path": "frontend/src/components/quotes/QuoteSubmitForm.tsx",
+          "operation": "create",
+          "description": "Create a submission form with inputs for quote text and author name, client-side validation for non-empty values, submit button, and submission loading/error/success feedback."
+        },
+        {
+          "path": "frontend/src/hooks/useQuotes.ts",
+          "operation": "create",
+          "description": "Add React Query hooks for listing quotes and submitting a quote, including query invalidation/refetch on successful submission."
+        },
+        {
+          "path": "frontend/src/lib/quotesClient.ts",
+          "operation": "create",
+          "description": "Add a small frontend client wrapper around the existing backend connection to call quote-related backend capabilities (list and create), isolating canister method details from UI components."
+        },
+        {
+          "path": "frontend/src/main.tsx",
+          "operation": "modify",
+          "description": "Fix styling import to use the existing global Tailwind stylesheet (import the correct file location) and ensure the new App component is correctly imported and rendered."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Add client-side browsing utilities: case-insensitive search across quote text/author and simple sorting (Newest/Oldest).",
+      "acceptanceCriteria": [
+        "Frontend provides a search input that filters quotes by matching quote text or author name (case-insensitive).",
+        "Frontend provides a sort control with at least: Newest first and Oldest first.",
+        "Backend supports listing with optional query parameters needed to implement search and sorting efficiently (or frontend filtering if dataset is small), with documented behavior in code comments."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/QuotesHome.tsx",
+          "operation": "modify",
+          "description": "Add search input state and sort control state; wire them to the feed rendering so filtering is case-insensitive over quote text/author name and sorting supports Newest first / Oldest first."
+        },
+        {
+          "path": "frontend/src/components/quotes/QuotesToolbar.tsx",
+          "operation": "create",
+          "description": "Create a toolbar component that contains the search input and sort control (and any small helper text), designed to match the reading-focused theme."
+        },
+        {
+          "path": "frontend/src/hooks/useQuotes.ts",
+          "operation": "modify",
+          "description": "Support passing search/sort parameters into the listing query key so React Query caching behaves correctly when users change search/sort."
+        },
+        {
+          "path": "frontend/src/lib/quotesClient.ts",
+          "operation": "modify",
+          "description": "Document (in code comments) whether filtering/sorting is performed client-side due to small dataset assumptions or supported by backend listing capabilities when available; keep behavior deterministic and well-defined."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Apply a warm, paper-like visual theme (no blue/purple primary) with readable typography and consistent component styling across the app using Tailwind.",
+      "acceptanceCriteria": [
+        "UI uses a consistent theme (e.g., warm paper-like background, ink-like text, accent color) across all pages/components.",
+        "Typography emphasizes readability for quote text (clear hierarchy between quote text and author name).",
+        "Theme is applied consistently to feed items, buttons, inputs, and headers using Tailwind + existing UI components (without editing immutable component source files)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/index.css",
+          "operation": "modify",
+          "description": "Update CSS variables/Tailwind base layer to a warm neutral palette (paper background, ink foreground, warm accent) and tune base typography defaults for readability; avoid blue/purple as primary."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Apply the global layout styling (max width, comfortable spacing, header + content structure) and ensure all text is in English."
+        },
+        {
+          "path": "frontend/src/components/quotes/QuoteCard.tsx",
+          "operation": "modify",
+          "description": "Refine typography (larger quote text, subdued author line), spacing, and subtle borders/shadows to match the paper/ink theme."
+        },
+        {
+          "path": "frontend/src/components/quotes/QuoteSubmitForm.tsx",
+          "operation": "modify",
+          "description": "Ensure form fields/buttons follow the theme (warm accents, consistent focus/hover states) using Tailwind classes and/or existing UI components where available (do not edit immutable UI sources)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Wire static generated branding images (logo and paper texture) into the UI from frontend/public/assets/generated.",
+      "acceptanceCriteria": [
+        "Generated images are placed in frontend/public/assets/generated and referenced directly by the frontend (no backend routing).",
+        "Site displays the logo in the header and uses the background/texture in a visually subtle way (e.g., hero or page background)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/quotes-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated logo asset at frontend/public/assets/generated/quotes-logo.dim_512x512.png so it can be referenced statically by the frontend."
+        },
+        {
+          "path": "frontend/public/assets/generated/paper-texture.dim_1600x900.png",
+          "operation": "create",
+          "description": "Add the generated background texture asset at frontend/public/assets/generated/paper-texture.dim_1600x900.png so it can be referenced statically by the frontend."
+        },
+        {
+          "path": "frontend/src/components/layout/SiteHeader.tsx",
+          "operation": "create",
+          "description": "Create a header that displays the logo from frontend/public/assets/generated/quotes-logo.dim_512x512.png and the site title; keep it lightweight and consistent with the theme."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the SiteHeader into the app layout and apply a subtle background treatment using frontend/public/assets/generated/paper-texture.dim_1600x900.png (e.g., page background layer) without adding backend routing."
+        }
+      ]
+    }
+  ]
+}

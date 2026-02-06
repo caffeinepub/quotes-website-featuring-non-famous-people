@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Website for quotes from non-famous people.",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Minimal typographic logo mark with a quote motif, warm neutral palette (quotes-logo.dim_512x512.png)\n- Subtle paper grain / texture background, seamless or large canvas (paper-texture.dim_1600x900.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-frontend-that-showcases-quotes-from-non-famous-people-with-a-home-feed-and-a-quote-submission-form",
+      "title": "Create a frontend that showcases quotes from non-famous people with a home feed and a quote submission form.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-basic-browsing-utilities-to-help-users-discover-quotes-including-search-by-text-author-and-simple-sorting",
+      "title": "Add basic browsing utilities to help users discover quotes, including search by text/author and simple sorting.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-coherent-distinctive-visual-theme-across-the-site-colors-typography-spacing-and-components-suitable-for-a-quotes-focused-reading-experience-avoiding-blue-purple-as-the-primary-palette",
+      "title": "Apply a coherent, distinctive visual theme across the site (colors, typography, spacing, and components) suitable for a quotes-focused reading experience, avoiding blue/purple as the primary palette.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-static-generated-image-assets-for-branding-and-ambiance-and-render-them-in-the-ui-stored-under-frontend-public-assets-generated",
+      "title": "Add static generated image assets for branding and ambiance and render them in the UI (stored under frontend/public/assets/generated).",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create a website that showcases quotes from non-famous people.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Implement backend data model and APIs to store and retrieve quotes from non-famous people, including creating a quote and listing quotes.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Quotes website featuring non-famous people",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

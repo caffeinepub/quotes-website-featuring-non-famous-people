@@ -1,0 +1,110 @@
+{
+  "kind": "build_request",
+  "title": "Quotes website featuring non-famous people",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Implement backend data model and APIs to store and retrieve quotes from non-famous people, including creating a quote and listing quotes.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Create a website for quotes from non-famous people"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A Quote record includes at minimum: id, text, authorName (non-famous person), createdAt timestamp.",
+        "Backend exposes canister methods to: createQuote(text, authorName) and listQuotes({page?, pageSize?}).",
+        "Quotes persist across canister upgrades using stable storage.",
+        "Backend validates inputs (non-empty text and authorName; reasonable max lengths) and returns clear error messages."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Create a frontend that showcases quotes from non-famous people with a home feed and a quote submission form.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Create a website for quotes from non-famous people"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Home page displays a scrollable list/feed of quotes with quote text and author name.",
+        "A “Submit a quote” flow exists with a form for quote text and author name and a submit button.",
+        "After successful submission, the new quote appears in the feed without requiring a manual refresh (React Query invalidation/refetch).",
+        "Loading and error states are shown for both listing and submission."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Add basic browsing utilities to help users discover quotes, including search by text/author and simple sorting.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Create a website for quotes from non-famous people"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Frontend provides a search input that filters quotes by matching quote text or author name (case-insensitive).",
+        "Frontend provides a sort control with at least: Newest first and Oldest first.",
+        "Backend supports listing with optional query parameters needed to implement search and sorting efficiently (or frontend filtering if dataset is small), with documented behavior in code comments."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Apply a coherent, distinctive visual theme across the site (colors, typography, spacing, and components) suitable for a quotes-focused reading experience, avoiding blue/purple as the primary palette.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "UI uses a consistent theme (e.g., warm paper-like background, ink-like text, accent color) across all pages/components.",
+        "Typography emphasizes readability for quote text (clear hierarchy between quote text and author name).",
+        "Theme is applied consistently to feed items, buttons, inputs, and headers using Tailwind + existing UI components (without editing immutable component source files)."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Add static generated image assets for branding and ambiance and render them in the UI (stored under frontend/public/assets/generated).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Generated images are placed in frontend/public/assets/generated and referenced directly by the frontend (no backend routing).",
+        "Site displays the logo in the header and uses the background/texture in a visually subtle way (e.g., hero or page background)."
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain a single Motoko actor in backend/main.mo (no additional backend services).",
+    "Do not modify files under frontend/src/components/ui or other paths marked immutable in SYSTEM_CONTEXT.",
+    "Use English for all user-facing text."
+  ],
+  "nonGoals": [
+    "Internet Identity authentication and user accounts.",
+    "Admin moderation workflows, reporting, or advanced content review.",
+    "Real-time updates (websockets) or chat features.",
+    "External database or third-party API integrations."
+  ],
+  "imageRequirements": {
+    "required": [
+      "Minimal typographic logo mark with a quote motif, warm neutral palette (quotes-logo.dim_512x512.png)",
+      "Subtle paper grain / texture background, seamless or large canvas (paper-texture.dim_1600x900.png)"
+    ],
+    "edits": []
+  }
+}
